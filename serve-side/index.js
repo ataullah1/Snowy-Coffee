@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,6 +24,67 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+    const coffeeCollection = client.db('coffeeDB').collection('coffees');
+
+    //  Create Data
+    app.post('/coffees', async (req, res) => {
+      const newCoffee = req.body;
+      console.log(newCoffee);
+      const result = await coffeeCollection.insertOne(newCoffee);
+      res.send(result);
+    });
+
+    // Read All Data
+    app.get('/coffees', async (req, res) => {
+      const cursor = coffeeCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
+    // Read Single Data
+    app.get('/coffees/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await coffeeCollection.findOne(query);
+      res.send(result);
+    });
+
+    // Update Single Data
+    app.put('/coffees/:id', async (req, res) => {
+      const coffeDta = req.body;
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      // Specify the update to set a value for the plot field
+      const updateCoffee = {
+        $set: {
+          name: coffeDta.name,
+          chef: coffeDta.chef,
+          supplier: coffeDta.supplier,
+          taste: coffeDta.taste,
+          category: coffeDta.category,
+          photo: coffeDta.photo,
+          price: coffeDta.price,
+          details: coffeDta.details,
+        },
+      };
+      // Update the first document that matches the filter
+      const result = await coffeeCollection.updateOne(
+        query,
+        updateCoffee,
+        options
+      );
+      res.send(result);
+    });
+
+    // Delete Data
+    app.delete('/coffees/:id', async (req, res) => {
+      const id = req.params.id;
+      console.log('Delete data', id);
+      const query = { _id: new ObjectId(id) };
+      const result = await coffeeCollection.deleteOne(query);
+      res.send(result);
+    });
 
     // Send a ping to confirm a successful connection
     await client.db('admin').command({ ping: 1 });
@@ -32,7 +93,7 @@ async function run() {
     );
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
