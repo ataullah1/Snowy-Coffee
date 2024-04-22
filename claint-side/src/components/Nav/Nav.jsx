@@ -1,31 +1,11 @@
-import { Link } from 'react-router-dom';
-
+import logo1 from '../../assets/images/more/logo1.png';
 const Nav = () => {
   return (
-    <div>
-      <ul className="flex items-center justify-around w-2/3 gap-12 mx-auto">
-        <Link className="py-2 px-3 bg-slate-800 text-white rounded-md" to={'/'}>
-          Home
-        </Link>
-        <Link
-          className="py-2 px-3 bg-slate-800 text-white rounded-md"
-          to={'/about'}
-        >
-          About
-        </Link>
-        <Link
-          className="py-2 px-3 bg-slate-800 text-white rounded-md"
-          to={'/login'}
-        >
-          Login
-        </Link>
-        <Link
-          className="py-2 px-3 bg-slate-800 text-white rounded-md"
-          to={'/register'}
-        >
-          Register
-        </Link>
-      </ul>
+    <div className="bg-[#372727] py-2">
+      <div className="flex gap-2 items-center justify-center">
+        <img className="h-16 md:h-20" src={logo1} alt="" />
+        <h1 className="text-white text-6xl font-normal">Snowy Coffee</h1>
+      </div>
     </div>
   );
 };
