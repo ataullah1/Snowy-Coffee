@@ -5,11 +5,15 @@ import img1 from '../../assets/images/more/11.png';
 const AddCoffee = () => {
   const textShadow = {
     textShadow:
-      '2px 0px 3px #374151ab, -1px 0px 4px #374151ab, 0px 1px 1px #374151ab',
+      '2px 0px 5px #908380af, -2px 0px 4px #908380af, 0px 2px 4px #908380af',
   };
   return (
     <div className="relative">
-      <img src={img1} alt="" className="absolute top-0 left-0 right-0 w-full -z-10" />
+      <img
+        src={img1}
+        alt=""
+        className="absolute top-0 left-0 right-0 w-full -z-10"
+      />
       <div className="w-11/12 lg:w-10/12 mx-auto">
         <Link to={'/'}>
           <button

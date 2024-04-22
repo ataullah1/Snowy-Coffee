@@ -5,6 +5,8 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Root from '../root/Root';
 import AddCoffee from '../pages/AddCoffee/AddCoffee';
+import CoffeDetails from '../pages/CoffeDetails/CoffeDetails';
+import CoffeeInfoUpdate from '../pages/CoffeeInfoUpdate/CoffeeInfoUpdate';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
       {
         path: '/add-coffee',
         element: <AddCoffee />,
+      },
+      {
+        path: '/coffee-details',
+        element: <CoffeDetails />,
+      },
+      {
+        path: '/coffee-info-update',
+        element: <CoffeeInfoUpdate />,
       },
       {
         path: '/about',
