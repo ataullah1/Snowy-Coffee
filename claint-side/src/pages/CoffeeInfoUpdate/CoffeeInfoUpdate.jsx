@@ -28,7 +28,7 @@ const CoffeeInfoUpdate = () => {
         </Link>
         <div className="w-full bg-[#F4F3F0] rounded-[5px] py-6 md:py-14 px-4 md:px-8 lg:px-16 mb-28 space-y-5">
           <h1
-            className="text-[45px] text-[#161b21] text-center"
+            className="text-[45px] text-primaryColor text-center"
             style={textShadow}
           >
             Update Existing Coffee Details
