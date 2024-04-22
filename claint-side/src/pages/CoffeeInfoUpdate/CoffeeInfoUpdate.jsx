@@ -18,8 +18,29 @@ const CoffeeInfoUpdate = () => {
     const category = dta.category.value;
     const details = dta.details.value;
     const photo = dta.photo.value;
-    const formData = { name, chef, supplier, taste, category, details, photo };
+    const price = dta.price.value;
+    const formData = {
+      name,
+      chef,
+      supplier,
+      taste,
+      category,
+      photo,
+      price,
+      details,
+    };
     console.log(formData);
+    // fetch('http://localhost:3000/coffees', {
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type': 'application/json',
+    //   },
+    //   body: JSON.stringify(formData),
+    // })
+    //   .then((res) => res.json())
+    //   .then((dta) => {
+    //     console.log(dta);
+    //   });
   };
 
   return (
@@ -110,6 +131,7 @@ const CoffeeInfoUpdate = () => {
                     Category
                   </label>
                   <input
+                    required
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="category"
@@ -118,27 +140,49 @@ const CoffeeInfoUpdate = () => {
                 </div>
                 <div className="flex flex-col gap-2 w-full md:w-1/2">
                   <label className="text-stone-900 text-opacity-80 text-lg font-semibold">
-                    Details
+                    Price
                   </label>
                   <input
+                    required
+                    className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
+                    type="text"
+                    name="price"
+                    placeholder="Enter coffee price"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col md:flex-row gap-5">
+                <div className="flex flex-col gap-2 w-full md:w-1/2">
+                  <label className="text-stone-900 text-opacity-80 text-lg font-semibold">
+                    Photo
+                  </label>
+                  <input
+                    required
+                    className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
+                    type="text"
+                    name="photo"
+                    placeholder="Enter photo URL"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 w-full md:w-1/2">
+                  <label className="text-stone-900 text-opacity-80 text-lg font-semibold">
+                    Details
+                  </label>
+                  <textarea
+                    className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none min-h-10 h-10"
+                    name="details"
+                    placeholder="Enter coffee details"
+                  ></textarea>
+                  {/* <input
+                    required
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="details"
                     placeholder="Enter coffee details"
-                  />
+                  /> */}
                 </div>
               </div>
-              <div className="flex flex-col gap-2 w-full">
-                <label className="text-stone-900 text-opacity-80 text-lg font-semibold">
-                  Photo
-                </label>
-                <input
-                  className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
-                  type="text"
-                  name="photo"
-                  placeholder="Enter photo URL"
-                />
-              </div>
+
               <button className="w-full py-1 bg-[#D2B48C] rounded-[5px] border-2 border-primaryColor text-primaryColor text-lg font-bold sm:text-2xl mb-5 md:mb-0 active:-skew-x-[30deg] duration-200">
                 Update Coffee Details
               </button>

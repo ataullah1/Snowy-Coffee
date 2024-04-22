@@ -1,10 +1,12 @@
+import PropTypes from 'prop-types';
 import { BsCupHot, BsEye } from 'react-icons/bs';
 import cup1 from '../../assets/images/6.png';
 import img1 from '../../assets/images/more/4.png';
 import img2 from '../../assets/images/more/5.png';
 import { FaPen, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-const OurPopularProducts = () => {
+const OurPopularProducts = ({ data }) => {
+  // console.log(data);
   const textShadow = {
     textAlign: 'center',
     textShadow:
@@ -41,45 +43,52 @@ const OurPopularProducts = () => {
           </Link>
         </div>
         <div className="grid gap-5 grid-cols-1 lg:grid-cols-2">
-          <div className="w-full max-w-[648px] mx-auto lg:mx-0 p-4 sm:p-6 bg-[#F5F4F1] rounded-[10px] flex flex-col sm:flex-row items-center gap-5">
-            <div className="sm:w-[30%]">
-              <img className="w-full h-auto" src={cup1} />
-            </div>
-            <div className="sm:w-[60%] flex-col flex gap-1">
-              <p className="text-primaryColor text-xl">
-                <span className="font-semibold">Name: </span>
-                <span className="text-opacity-70 font-normal">
-                  Americano Coffee
-                </span>
-              </p>
-              <p className="text-primaryColor text-xl">
-                <span className="font-semibold">Chef: </span>
-                <span className="text-opacity-70  font-normal ">
-                  Mr. Matin Paul
-                </span>
-              </p>
-              <p className="text-primaryColor text-xl">
-                <span className="font-semibold">Price: </span>
-                <span className="text-opacity-70 font-normal">890 Taka</span>
-              </p>
-            </div>
-            <div className="text-white flex flex-row sm:flex-col gap-5 sm:w-[10%] sm:items-end mb-2 z-30">
-              <Link to={'/coffee-details'}>
-                <button className="w-10 h-10 bg-[#D2B48C] rounded-[5px] text-xl flex items-center justify-center">
-                  <BsEye />
-                </button>
-              </Link>
-              <Link to={'/coffee-info-update'}>
-                <button className="w-10 h-10 bg-black rounded-[5px] text-xl flex items-center justify-center">
-                  <FaPen />
-                </button>
-              </Link>
+          {data.map((dta) => (
+            <div
+              key={dta._id}
+              className="w-full max-w-[648px] mx-auto lg:mx-0 p-4 sm:p-6 bg-[#F5F4F1] rounded-[10px] flex flex-col sm:flex-row items-center gap-5"
+            >
+              <div className="sm:w-[30%] min-h-60 flex items-center">
+                <img className="w-full h-auto" src={dta?.photo || cup1} />
+              </div>
+              <div className="sm:w-[60%] flex-col flex gap-1">
+                <p className="text-primaryColor text-xl">
+                  <span className="font-semibold">Name: </span>
+                  <span className="text-opacity-70 font-normal">
+                    {dta?.name}
+                  </span>
+                </p>
+                <p className="text-primaryColor text-xl">
+                  <span className="font-semibold">Chef: </span>
+                  <span className="text-opacity-70  font-normal ">
+                    {dta?.chef}
+                  </span>
+                </p>
+                <p className="text-primaryColor text-xl">
+                  <span className="font-semibold">Price: </span>
+                  <span className="text-opacity-70 font-normal">
+                    {dta?.price || '0,00'} Taka
+                  </span>
+                </p>
+              </div>
+              <div className="text-white flex flex-row sm:flex-col gap-5 sm:w-[10%] sm:items-end mb-2 z-30">
+                <Link to={'/coffee-details'}>
+                  <button className="w-10 h-10 bg-[#D2B48C] rounded-[5px] text-xl flex items-center justify-center">
+                    <BsEye />
+                  </button>
+                </Link>
+                <Link to={'/coffee-info-update'}>
+                  <button className="w-10 h-10 bg-black rounded-[5px] text-xl flex items-center justify-center">
+                    <FaPen />
+                  </button>
+                </Link>
 
-              <button className="w-10 h-10 bg-red-500 rounded-[5px] text-xl flex items-center justify-center">
-                <FaTrash />
-              </button>
+                <button className="w-10 h-10 bg-red-500 rounded-[5px] text-xl flex items-center justify-center">
+                  <FaTrash />
+                </button>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -87,3 +96,6 @@ const OurPopularProducts = () => {
 };
 
 export default OurPopularProducts;
+OurPopularProducts.propTypes = {
+  data: PropTypes.array,
+};
