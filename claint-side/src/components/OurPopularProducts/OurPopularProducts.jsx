@@ -109,12 +109,12 @@ const OurPopularProducts = ({ data }) => {
                 </p>
               </div>
               <div className="text-white flex flex-row sm:flex-col gap-5 sm:w-[10%] sm:items-end mb-2 z-30">
-                <Link to={'/coffee-details'}>
+                <Link to={`/coffee-details/${dta._id}`}>
                   <button className="w-10 h-10 bg-[#D2B48C] rounded-[5px] text-xl flex items-center justify-center">
                     <BsEye />
                   </button>
                 </Link>
-                <Link to={'/coffee-info-update'}>
+                <Link to={`/coffee-info-update/${dta._id}`}>
                   <button className="w-10 h-10 bg-black rounded-[5px] text-xl flex items-center justify-center">
                     <FaPen />
                   </button>

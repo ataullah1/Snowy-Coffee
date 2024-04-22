@@ -1,8 +1,13 @@
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import img1 from '../../assets/images/more/11.png';
 import cup1 from '../../assets/images/6.png';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
 const CoffeDetails = () => {
+  const data = useLoaderData();
+  const { id } = useParams();
+  const findDta = data.find((dta) => dta._id === id);
+  const { name, chef, details, price, category, taste, supplier, photo } =
+    findDta;
   const textShadow = {
     textShadow:
       '2px 0px 5px #908380af, -2px 0px 4px #908380af, 0px 2px 4px #908380af',
@@ -28,7 +33,10 @@ const CoffeDetails = () => {
         </Link>
         <div className="w-full bg-[#F4F3F0] rounded-[5px] p-6 md:py-16 md:px-14 mb-28 flex flex-col md:flex-row items-center gap-8 md:gap-20">
           <div className="w-full md:w-2/5">
-            <img className="h-auto w-[200px] md:w-[300px] mx-auto" src={cup1} />
+            <img
+              className="h-auto w-[200px] md:w-[300px] mx-auto"
+              src={photo || cup1}
+            />
           </div>
           <div className="w-full md:w-3/5 space-y-5 md:space-y-8">
             <h1
@@ -40,41 +48,33 @@ const CoffeDetails = () => {
             <div className="sm:w-full flex-col flex gap-1">
               <p className="text-primaryColor text-xl">
                 <span className="font-semibold">Name: </span>
-                <span className="text-opacity-70 font-normal">
-                  Americano Coffee
-                </span>
+                <span className="text-opacity-70 font-normal">{name}</span>
               </p>
               <p className="text-primaryColor text-xl">
                 <span className="font-semibold">Chef: </span>
-                <span className="text-opacity-70  font-normal ">
-                  Mr. Matin Paul
-                </span>
+                <span className="text-opacity-70  font-normal ">{chef}</span>
               </p>
               <p className="text-primaryColor text-xl">
                 <span className="font-semibold">Supplier </span>
-                <span className="text-opacity-70 font-normal">
-                  Cappu Authorizer
-                </span>
+                <span className="text-opacity-70 font-normal">{supplier}</span>
               </p>
               <p className="text-primaryColor text-xl">
                 <span className="font-semibold">Taste: </span>
-                <span className="text-opacity-70 font-normal">
-                  Sweet and hot
-                </span>
+                <span className="text-opacity-70 font-normal">{taste}</span>
               </p>
               <p className="text-primaryColor text-xl">
                 <span className="font-semibold">Category: </span>
-                <span className="text-opacity-70 font-normal">Americano</span>
+                <span className="text-opacity-70 font-normal">{category}</span>
               </p>
               <p className="text-primaryColor text-xl">
                 <span className="font-semibold">Price: </span>
-                <span className="text-opacity-70 font-normal">890 Taka</span>
+                <span className="text-opacity-70 font-normal">
+                  {price} Taka
+                </span>
               </p>
               <p className="text-primaryColor text-xl">
                 <span className="font-semibold">Details: </span>
-                <span className="text-opacity-70 font-normal">
-                  Espresso with hot water
-                </span>
+                <span className="text-opacity-70 font-normal">{details}</span>
               </p>
             </div>
           </div>
