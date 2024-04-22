@@ -7,11 +7,13 @@ import Root from '../root/Root';
 import AddCoffee from '../pages/AddCoffee/AddCoffee';
 import CoffeDetails from '../pages/CoffeDetails/CoffeDetails';
 import CoffeeInfoUpdate from '../pages/CoffeeInfoUpdate/CoffeeInfoUpdate';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
