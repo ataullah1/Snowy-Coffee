@@ -15,7 +15,7 @@ const Banner = () => {
           Would you like a Cup of Delicious Coffee?
         </h1>
         <p className="max-w-[724px] text-white text-base font-normal pt-2 md:pt-4 pb-4 md:pb-8">{`It's coffee time - Sip & Savor - Relaxation in every sip! Get the nostalgia back!! Your companion of every moment!!! Enjoy the beautiful moments and make them memorable.`}</p>
-        <button className="text-neutral-800 text-xl md:text-2xl font-normal bg-[#E3B577] px-5 py-1 hover:-skew-x-[20deg] duration-200">
+        <button className="text-primaryColor text-xl md:text-2xl font-normal bg-[#E3B577] px-5 py-1 hover:-skew-x-[20deg] duration-200">
           Learn More
         </button>
       </div>
