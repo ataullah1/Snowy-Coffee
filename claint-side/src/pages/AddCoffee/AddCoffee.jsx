@@ -51,6 +51,7 @@ const AddCoffee = () => {
           });
         }
       });
+    dta.reset();
   };
 
   return (

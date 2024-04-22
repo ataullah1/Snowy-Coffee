@@ -5,13 +5,50 @@ import img1 from '../../assets/images/more/4.png';
 import img2 from '../../assets/images/more/5.png';
 import { FaPen, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
 const OurPopularProducts = ({ data }) => {
+  const [coffeeDta, serCoffeeDta] = useState(data);
   // console.log(data);
   const textShadow = {
     textAlign: 'center',
     textShadow:
       '2px 0px 5px #908380af, -2px 0px 4px #908380af, 0px 2px 4px #908380af',
   };
+
+  // Data delete function call
+  const handleDelete = (id) => {
+    // console.log(id);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/coffees/${id}`, {
+          method: 'DELETE',
+        })
+          .then((res) => res.json())
+          .then((dta) => {
+            if (dta.deletedCount > 0) {
+              // console.log(dta);
+              const filterDelete = data.filter((dta) => dta._id !== id);
+              serCoffeeDta(filterDelete);
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            }
+          });
+      }
+    });
+  };
+
   return (
     <div className="mt-16 pb-24 md:mt-24 relative">
       <img
@@ -43,7 +80,7 @@ const OurPopularProducts = ({ data }) => {
           </Link>
         </div>
         <div className="grid gap-5 grid-cols-1 lg:grid-cols-2">
-          {data.map((dta) => (
+          {coffeeDta.map((dta) => (
             <div
               key={dta._id}
               className="w-full max-w-[648px] mx-auto lg:mx-0 p-4 sm:p-6 bg-[#F5F4F1] rounded-[10px] flex flex-col sm:flex-row items-center gap-5"
@@ -83,7 +120,10 @@ const OurPopularProducts = ({ data }) => {
                   </button>
                 </Link>
 
-                <button className="w-10 h-10 bg-red-500 rounded-[5px] text-xl flex items-center justify-center">
+                <button
+                  className="w-10 h-10 bg-red-500 rounded-[5px] text-xl flex items-center justify-center"
+                  onClick={() => handleDelete(dta._id)}
+                >
                   <FaTrash />
                 </button>
               </div>
