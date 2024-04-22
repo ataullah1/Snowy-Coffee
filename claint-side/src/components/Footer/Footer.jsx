@@ -94,7 +94,7 @@ const Footer = () => {
                     placeholder="Message"
                     id=""
                   ></textarea>
-                  <button className="text-primaryColor py-1 px-4 rounded-full text-center border-2 border-primaryColor w-44 text-2xl font-normal">
+                  <button className="text-primaryColor py-1 px-4 rounded-full text-center border-2 border-primaryColor w-44 text-2xl font-normal hover:translate-x-4 duration-200">
                     Send Message
                   </button>
                 </form>

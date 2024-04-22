@@ -1,4 +1,11 @@
 import img1 from '../../assets/images/cups/Rectangle 10.png';
+import img2 from '../../assets/images/cups/Rectangle 11.png';
+import img3 from '../../assets/images/cups/Rectangle 12.png';
+import img4 from '../../assets/images/cups/Rectangle 13.png';
+import img5 from '../../assets/images/cups/Rectangle 14.png';
+import img6 from '../../assets/images/cups/Rectangle 15.png';
+import img7 from '../../assets/images/cups/Rectangle 16.png';
+import img8 from '../../assets/images/cups/Rectangle 9.png';
 const FollowOnIG = () => {
   const textShadow = {
     textAlign: 'center',
@@ -18,14 +25,46 @@ const FollowOnIG = () => {
           </h1>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <img className="rounded-lg w-full" src={img1} alt="" />
-          <img className="rounded-lg w-full" src={img1} alt="" />
-          <img className="rounded-lg w-full" src={img1} alt="" />
-          <img className="rounded-lg w-full" src={img1} alt="" />
-          <img className="rounded-lg w-full" src={img1} alt="" />
-          <img className="rounded-lg w-full" src={img1} alt="" />
-          <img className="rounded-lg w-full" src={img1} alt="" />
-          <img className="rounded-lg w-full" src={img1} alt="" />
+          <img
+            className="rounded-lg w-full hover:scale-105 duration-200"
+            src={img1}
+            alt=""
+          />
+          <img
+            className="rounded-lg w-full hover:scale-105 duration-200"
+            src={img2}
+            alt=""
+          />
+          <img
+            className="rounded-lg w-full hover:scale-105 duration-200"
+            src={img3}
+            alt=""
+          />
+          <img
+            className="rounded-lg w-full hover:scale-105 duration-200"
+            src={img4}
+            alt=""
+          />
+          <img
+            className="rounded-lg w-full hover:scale-105 duration-200"
+            src={img5}
+            alt=""
+          />
+          <img
+            className="rounded-lg w-full hover:scale-105 duration-200"
+            src={img6}
+            alt=""
+          />
+          <img
+            className="rounded-lg w-full hover:scale-105 duration-200"
+            src={img7}
+            alt=""
+          />
+          <img
+            className="rounded-lg w-full hover:scale-105 duration-200"
+            src={img8}
+            alt=""
+          />
         </div>
       </div>
     </div>
