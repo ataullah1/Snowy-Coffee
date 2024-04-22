@@ -22,7 +22,7 @@ const Footer = () => {
         backgroundPosition: 'center',
       }}
     >
-      <div className="w-11/12 lg:w-10/12 mx-auto">
+      <div className="w-11/12 lg:w-10/12 max-w-[1900px] mx-auto">
         <div className="pb-5 sm:pb-10 pt-20 sm:pt-24">
           <img className="w-14 md:w-[75px]" src={logo1} alt="" />
           <div className="flex flex-col md:flex-row gap-5">

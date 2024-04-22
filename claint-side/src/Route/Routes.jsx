@@ -4,15 +4,20 @@ import About from '../pages/About/About';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Root from '../root/Root';
+import AddCoffee from '../pages/AddCoffee/AddCoffee';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root/>,
+    element: <Root />,
     children: [
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/add-coffee',
+        element: <AddCoffee />,
       },
       {
         path: '/about',

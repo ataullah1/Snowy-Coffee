@@ -3,6 +3,7 @@ import cup1 from '../../assets/images/6.png';
 import img1 from '../../assets/images/more/4.png';
 import img2 from '../../assets/images/more/5.png';
 import { FaPen, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const OurPopularProducts = () => {
   const textShadow = {
     textAlign: 'center',
@@ -30,12 +31,14 @@ const OurPopularProducts = () => {
           >
             Our Popular Products
           </h1>
-          <button className="w-[150px] h-12 bg-orange-300 rounded-[5px] border-2 border-primaryColor text-white text-2xl font-normal flex items-center justify-center gap-2 mx-auto mt-2 mb-14 hover:-skew-x-12 duration-200">
-            <span style={textShadow}>Add Coffee</span>
-            <span className="text-primaryColor">
-              <BsCupHot />
-            </span>
-          </button>
+          <Link to={'/add-coffee'}>
+            <button className="w-[150px] h-12 bg-orange-300 rounded-[5px] border-2 border-primaryColor text-white text-2xl font-normal flex items-center justify-center gap-2 mx-auto mt-2 mb-14 hover:-skew-x-12 duration-200">
+              <span style={textShadow}>Add Coffee</span>
+              <span className="text-primaryColor">
+                <BsCupHot />
+              </span>
+            </button>
+          </Link>
         </div>
         <div className="grid gap-5 grid-cols-1 lg:grid-cols-2">
           <div className="w-full max-w-[648px] mx-auto lg:mx-0 p-4 sm:p-6 bg-[#F5F4F1] rounded-[10px] flex flex-col sm:flex-row items-center gap-5">
