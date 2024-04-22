@@ -7,6 +7,21 @@ const AddCoffee = () => {
     textShadow:
       '2px 0px 5px #908380af, -2px 0px 4px #908380af, 0px 2px 4px #908380af',
   };
+
+  const handleAddCoffee = (e) => {
+    e.preventDefault();
+    const dta = e.target;
+    const name = dta.name.value;
+    const chef = dta.chef.value;
+    const supplier = dta.supplier.value;
+    const taste = dta.taste.value;
+    const category = dta.category.value;
+    const details = dta.details.value;
+    const photo = dta.photo.value;
+    const formData = { name, chef, supplier, taste, category, details, photo };
+    console.log(formData);
+  };
+
   return (
     <div className="relative">
       <img
@@ -40,7 +55,7 @@ const AddCoffee = () => {
             distribution of letters, as opposed to using Content here.
           </p>
           <div>
-            <form className="flex flex-col gap-5">
+            <form className="flex flex-col gap-5" onSubmit={handleAddCoffee}>
               <div className="flex flex-col md:flex-row gap-5">
                 <div className="flex flex-col gap-2 w-full md:w-1/2">
                   <label className="text-stone-900 text-opacity-80 text-lg font-semibold">
@@ -49,6 +64,7 @@ const AddCoffee = () => {
                   <input
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
+                    name="name"
                     placeholder="Enter coffee name"
                   />
                 </div>
@@ -59,6 +75,7 @@ const AddCoffee = () => {
                   <input
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
+                    name="chef"
                     placeholder="Enter coffee chef"
                   />
                 </div>
@@ -71,6 +88,7 @@ const AddCoffee = () => {
                   <input
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
+                    name="supplier"
                     placeholder="Enter coffee supplier"
                   />
                 </div>
@@ -81,6 +99,7 @@ const AddCoffee = () => {
                   <input
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
+                    name="taste"
                     placeholder="Enter coffee taste"
                   />
                 </div>
@@ -93,6 +112,7 @@ const AddCoffee = () => {
                   <input
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
+                    name="category"
                     placeholder="Enter coffee category"
                   />
                 </div>
@@ -103,6 +123,7 @@ const AddCoffee = () => {
                   <input
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
+                    name="details"
                     placeholder="Enter coffee details"
                   />
                 </div>
@@ -114,10 +135,11 @@ const AddCoffee = () => {
                 <input
                   className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                   type="text"
+                  name="photo"
                   placeholder="Enter photo URL"
                 />
               </div>
-              <button className="w-full py-1 bg-[#D2B48C] rounded-[5px] border-2 border-primaryColor text-primaryColor text-lg font-bold sm:text-2xl mb-5 md:mb-0">
+              <button className="w-full py-1 bg-[#D2B48C] rounded-[5px] border-2 border-primaryColor text-primaryColor text-lg font-bold sm:text-2xl mb-5 md:mb-0 active:-skew-x-[30deg] duration-200">
                 Add Coffee
               </button>
             </form>
