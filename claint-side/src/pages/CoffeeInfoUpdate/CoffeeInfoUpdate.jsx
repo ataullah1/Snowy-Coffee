@@ -1,13 +1,21 @@
 import { FaArrowLeftLong } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import img1 from '../../assets/images/more/11.png';
+import Swal from 'sweetalert2';
 
 const CoffeeInfoUpdate = () => {
+  const data = useLoaderData();
+  const { id } = useParams();
+  // console.log(id);
+  const findDta = data.find((dta) => dta._id === id);
+  const { name, chef, details, price, category, taste, supplier, photo } =
+    findDta;
   const textShadow = {
     textShadow:
       '2px 0px 5px #908380af, -2px 0px 4px #908380af, 0px 2px 4px #908380af',
   };
 
+  const naviget = useNavigate();
   const handleUpdateCoffee = (e) => {
     e.preventDefault();
     const dta = e.target;
@@ -30,17 +38,27 @@ const CoffeeInfoUpdate = () => {
       details,
     };
     console.log(formData);
-    // fetch('http://localhost:3000/coffees', {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((dta) => {
-    //     console.log(dta);
-    //   });
+    fetch(`http://localhost:3000/coffees/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((dta) => {
+        console.log(dta);
+        if (dta.modifiedCount > 0) {
+          Swal.fire({
+            // position: 'top-end',
+            icon: 'success',
+            title: 'Your Coffee has been successfully Updated',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          naviget('/');
+        }
+      });
   };
 
   return (
@@ -86,6 +104,7 @@ const CoffeeInfoUpdate = () => {
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="name"
+                    defaultValue={name}
                     placeholder="Enter coffee name"
                   />
                 </div>
@@ -97,6 +116,7 @@ const CoffeeInfoUpdate = () => {
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="chef"
+                    defaultValue={chef}
                     placeholder="Enter coffee chef"
                   />
                 </div>
@@ -110,6 +130,7 @@ const CoffeeInfoUpdate = () => {
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="supplier"
+                    defaultValue={supplier}
                     placeholder="Enter coffee supplier"
                   />
                 </div>
@@ -121,6 +142,7 @@ const CoffeeInfoUpdate = () => {
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="taste"
+                    defaultValue={taste}
                     placeholder="Enter coffee taste"
                   />
                 </div>
@@ -135,6 +157,7 @@ const CoffeeInfoUpdate = () => {
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="category"
+                    defaultValue={category}
                     placeholder="Enter coffee category"
                   />
                 </div>
@@ -147,6 +170,7 @@ const CoffeeInfoUpdate = () => {
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="price"
+                    defaultValue={price}
                     placeholder="Enter coffee price"
                   />
                 </div>
@@ -161,6 +185,7 @@ const CoffeeInfoUpdate = () => {
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none"
                     type="text"
                     name="photo"
+                    defaultValue={photo}
                     placeholder="Enter photo URL"
                   />
                 </div>
@@ -171,6 +196,7 @@ const CoffeeInfoUpdate = () => {
                   <textarea
                     className="text-stone-900 placeholder-opacity-60 text-base font-normal py-2 px-4 rounded-md w-full outline-none min-h-10 h-10"
                     name="details"
+                    defaultValue={details}
                     placeholder="Enter coffee details"
                   ></textarea>
                   {/* <input
