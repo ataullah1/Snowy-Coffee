@@ -1,5 +1,5 @@
 # Snowy Coffee Store 
 
-## Live side: 
+## Live side: https://snowy-coffee.netlify.app/
 
-## Server Side:
+## Server Side: https://github.com/ataullah1/Snowy-Coffee
