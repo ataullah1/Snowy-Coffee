@@ -29,7 +29,7 @@ const Nav = () => {
                 <NavLink to={'/add-coffee'}>Add Coffee</NavLink>
               </li>
               <li className="border-b border-transparent hover:border-[#E3B577]">
-                <NavLink to={'/about'}>About</NavLink>
+                <NavLink to={'/users'}>Users</NavLink>
               </li>
               <NavLink to={'/login'}>
                 <li className="mt-1 sm:mt-0 bg-[#E3B577] px-7 py-2 md:py-2 rounded-sm font-bold text-sm cursor-pointer">
@@ -50,7 +50,7 @@ const Nav = () => {
               <NavLink to={'/add-coffee'}>Add Coffee</NavLink>
             </li>
             <li className="border-b border-transparent hover:border-[#E3B577]">
-              <NavLink to={'/about'}>About</NavLink>
+              <NavLink to={'/users'}>Users</NavLink>
             </li>
             <NavLink to={'/login'}>
               <li className="border-2 mt-1 sm:mt-0 border-transparent hover:border-[#E3B577] bg-[#E3B577] hover:bg-transparent px-5 md:px-7 py-1 md:py-2 rounded-md font-bold active:scale-90 duration-200">
