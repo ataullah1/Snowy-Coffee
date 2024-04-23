@@ -8,6 +8,7 @@ import { FaGithub } from 'react-icons/fa';
 import { ContextAuth } from '../../provider/Provider';
 import Loding from '../Loding/Loding';
 import { useNavigate } from 'react-router-dom';
+import img1 from '../../assets/images/more/11.png';
 // Sweetalert import
 import Swal from 'sweetalert2';
 const Login = () => {
@@ -121,7 +122,12 @@ const Login = () => {
     return <Loding />;
   }
   return (
-    <div>
+    <div className="py-8 relative">
+      <img
+        src={img1}
+        alt=""
+        className="absolute top-0 left-0 right-0 w-full -z-10"
+      />
       <div
         data-aos="zoom-in"
         className="w-full mt-2 md:max-w-[720px] mx-auto rounded-lg p-5"
@@ -189,7 +195,7 @@ const Login = () => {
         </form>{' '}
         <p className="pt-3">
           {`Don't have an account? `}
-          <Link to={'/register'} className="underline text-redLi">
+          <Link to={'/register'} className="underline text-primaryColor">
             Create Account
           </Link>
         </p>
