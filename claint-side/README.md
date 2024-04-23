@@ -1,3 +1,0 @@
-# Snowy Coffee
-
-## Live Link:
