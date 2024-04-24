@@ -29,7 +29,7 @@ const OurPopularProducts = ({ data }) => {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/coffees/${id}`, {
+        fetch(`https://coffee-store-serve-side.vercel.app/coffees/${id}`, {
           method: 'DELETE',
         })
           .then((res) => res.json())

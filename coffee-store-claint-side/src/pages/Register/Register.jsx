@@ -87,7 +87,7 @@ const Register = () => {
         profileUpdate(name, photo)
           .then(() => {
             setReload(!reload);
-            fetch('http://localhost:3000/users', {
+            fetch('https://coffee-store-serve-side.vercel.app/users', {
               method: 'POST',
               headers: {
                 'content-type': 'application/json',

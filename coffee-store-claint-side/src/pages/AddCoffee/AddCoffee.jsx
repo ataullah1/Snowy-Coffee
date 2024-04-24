@@ -31,7 +31,7 @@ const AddCoffee = () => {
       details,
     };
     // console.log(formData);
-    fetch('http://localhost:3000/coffees', {
+    fetch('https://coffee-store-serve-side.vercel.app/coffees', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
