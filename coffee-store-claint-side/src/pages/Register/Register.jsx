@@ -36,6 +36,8 @@ const Register = () => {
     userDta,
     profileUpdate,
     setIsLoading,
+    setReload,
+    reload,
   } = useContext(ContextAuth);
 
   // Naviget, login done then go to Login
@@ -74,11 +76,28 @@ const Register = () => {
     }
     // Email password Register
     emlPassRegister(email, pass)
-      .then(() => {
+      .then((res) => {
         // Update Profile
+        console.log(res.user);
+        const firstSignInDate = res.user.metadata?.creationTime;
+        const resName = res.user.displayName || name;
+        const resPhoto = res.user.photoURL || photo;
+        const resEmail = res.user.email || email;
+        const data = { firstSignInDate, resName, resEmail, resPhoto };
         profileUpdate(name, photo)
           .then(() => {
-            fetch('')
+            setReload(!reload);
+            fetch('http://localhost:3000/users', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+              },
+              body: JSON.stringify(data),
+            })
+              .then((res) => res.json())
+              .then((dta) => {
+                console.log(dta);
+              });
             Swal.fire({
               title: 'Good job!',
               text: 'Your account has been successfully created.',

@@ -1,5 +1,10 @@
+import { BiEdit } from 'react-icons/bi';
 import img1 from '../../assets/images/more/11.png';
+import { BsTrash } from 'react-icons/bs';
+import { useLoaderData } from 'react-router-dom';
 const Users = () => {
+  const userData = useLoaderData();
+  // console.log(userData);
   return (
     <div className="relative">
       <img
@@ -15,33 +20,40 @@ const Users = () => {
             <thead>
               <tr className="bg-primaryColor text-white font-semibold text-lg">
                 <th></th>
+                <th>Photo</th>
                 <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
+                <th>Email</th>
+                <th>Last SignIn</th>
+                <th className='w-2'>Edit</th>
+                <th className='w-2'>Delete</th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-              </tr>
-              {/* row 2 */}
-              <tr className="hover">
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-              </tr>
-              {/* row 3 */}
-              <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-              </tr>
+              {userData.map((dta, i) => (
+                <tr className="hover" key={dta._id}>
+                  <th>{i + 1}</th>
+                  <td className="">
+                    <img
+                      className="h-12 w-12 rounded-full"
+                      src={dta.resPhoto}
+                      alt=""
+                    />
+                  </td>
+                  <td>{dta.resName}</td>
+                  <td>{dta.resEmail}</td>
+                  <td>{dta.firstSignInDate}</td>
+                  <td className="text-center">
+                    <button className="text-2xl">
+                      <BiEdit />
+                    </button>
+                  </td>
+                  <td className="text-center">
+                    <button className="text-2xl hover:text-red-400">
+                      <BsTrash />
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

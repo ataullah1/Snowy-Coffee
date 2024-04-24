@@ -42,8 +42,8 @@ const OurPopularProducts = ({ data }) => {
                 title: 'Deleted!',
                 text: 'Your file has been deleted.',
                 icon: 'success',
-                showConfirmButton: false,
-                timer: 1200,
+              showConfirmButton: false,
+              timer: 1200,
               });
             }
           });

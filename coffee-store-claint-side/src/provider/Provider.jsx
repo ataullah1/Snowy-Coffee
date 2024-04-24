@@ -17,6 +17,12 @@ export const ContextAuth = createContext();
 const Provider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userDta, setUserDta] = useState(null);
+  const [reload, setReload] = useState(false);
+
+  // Auto Reload Profile
+  useEffect(() => {
+    setReload(!reload);
+  }, [reload]);
 
   // Email Password SignUp
   const emlPassRegister = (email, password) => {
@@ -83,6 +89,8 @@ const Provider = ({ children }) => {
     emlPassRegister,
     logOut,
     profileUpdate,
+    reload,
+    setReload,
   };
   return (
     <ContextAuth.Provider value={authDta}>{children}</ContextAuth.Provider>
