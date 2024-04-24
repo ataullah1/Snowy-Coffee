@@ -23,7 +23,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
     const coffeeCollection = client.db('coffeeDB').collection('coffees');
     const userCollection = client.db('coffeeDB').collection('coffeeUsers');
 
@@ -58,13 +58,15 @@ async function run() {
     });
 
     // Read Coffee Single Data
-
     app.get('/coffees/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await coffeeCollection.findOne(query);
       res.send(result);
     });
+
+    // Read User Single Data
+    app.get('/users/:id');
 
     // Update Single Data
     app.put('/coffees/:id', async (req, res) => {
@@ -104,7 +106,7 @@ async function run() {
     });
 
     // Send a ping to confirm a successful connection
-    await client.db('admin').command({ ping: 1 });
+    // await client.db('admin').command({ ping: 1 });
     console.log(
       'Pinged your deployment. You successfully connected to MongoDB!'
     );
