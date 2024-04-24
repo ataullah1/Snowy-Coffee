@@ -26,17 +26,19 @@ const Provider = ({ children }) => {
 
   // Email Password SignUp
   const emlPassRegister = (email, password) => {
+    setIsLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // Email Password Login
   const emlPassLogin = (email, password) => {
+    setIsLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
-    // setIsLoading(true);
   };
 
   // Social Login
   const googleLogin = () => {
+    setIsLoading(true);
     return signInWithPopup(auth, providerGoogle);
   };
 

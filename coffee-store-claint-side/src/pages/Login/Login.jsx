@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash, FaTwitter } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 import { ContextAuth } from '../../provider/Provider';
 import Loding from '../Loding/Loding';
@@ -14,7 +14,8 @@ import Swal from 'sweetalert2';
 const Login = () => {
   // Naviget, login done then go to Home
   const naviget = useNavigate();
-  // console.log(location);
+  const location = useLocation();
+  console.log(location);
   const [eye, setEye] = useState(false);
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const [emailErr, setEmailErr] = useState(null);
@@ -26,10 +27,10 @@ const Login = () => {
   console.log(userDta);
   useEffect(() => {
     if (userDta) {
-      naviget('/');
+      naviget(location?.state ? location.state : '/');
       // console.log('login to home');
     }
-  }, [naviget, userDta]);
+  }, [naviget, userDta, location.state]);
 
   const handleLoginSubmit = (e) => {
     setEmailErr(null);
@@ -54,7 +55,7 @@ const Login = () => {
         icon: 'warning',
         timer: 1500,
       });
-      naviget('/');
+      naviget(location?.state ? location.state : '/');
       return;
     } else {
       emlPassLogin(email, pass)
@@ -80,7 +81,7 @@ const Login = () => {
             icon: 'success',
             timer: 1500,
           });
-          naviget('/');
+          naviget(location?.state ? location.state : '/');
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -130,7 +131,7 @@ const Login = () => {
           text: 'Your account has been successfully logged in.',
           icon: 'success',
         });
-        naviget('/');
+        naviget(location?.state ? location.state : '/');
       })
       .catch((error) => {
         setIsLoading(false);

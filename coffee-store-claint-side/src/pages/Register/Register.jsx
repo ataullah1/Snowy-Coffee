@@ -158,6 +158,7 @@ const Register = () => {
         });
       })
       .catch((error) => {
+        setIsLoading(false);
         const errorMessage = error.message;
         console.log(errorMessage);
         Swal.fire({
