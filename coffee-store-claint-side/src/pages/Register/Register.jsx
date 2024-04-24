@@ -78,6 +78,7 @@ const Register = () => {
         // Update Profile
         profileUpdate(name, photo)
           .then(() => {
+            fetch('')
             Swal.fire({
               title: 'Good job!',
               text: 'Your account has been successfully created.',
