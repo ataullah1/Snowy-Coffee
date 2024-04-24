@@ -8,6 +8,7 @@ import CoffeDetails from '../pages/CoffeDetails/CoffeDetails';
 import CoffeeInfoUpdate from '../pages/CoffeeInfoUpdate/CoffeeInfoUpdate';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Users from '../pages/Users/Users';
+import PrivetRoute from '../PrivetRoute/PrivetRoute';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/users',
-        element: <Users />,
+        element: (
+          <PrivetRoute>
+            <Users />
+          </PrivetRoute>
+        ),
       },
       {
         path: '/login',
