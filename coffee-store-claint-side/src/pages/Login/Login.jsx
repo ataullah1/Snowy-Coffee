@@ -60,10 +60,9 @@ const Login = () => {
       emlPassLogin(email, pass)
         .then((res) => {
           console.log(res.user);
-          const firstSignInDate = res.user.metadata?.lastSignInTime;
-
+          const lastSignInDate = res.user.metadata?.lastSignInTime;
           const resEmail = res.user.email || email;
-          const data = { firstSignInDate, resEmail };
+          const data = { lastSignInDate, resEmail };
           fetch('https://coffee-store-serve-side.vercel.app/users', {
             method: 'PATCH',
             headers: {
@@ -109,9 +108,23 @@ const Login = () => {
       return;
     }
     socialLogin()
-      .then((result) => {
-        const user = result.user;
+      .then((res) => {
+        const user = res.user;
         console.log(user);
+        const lastSignInDate = res.user.metadata?.lastSignInTime;
+        const resEmail = res.user.email;
+        const data = { lastSignInDate, resEmail };
+        fetch('https://coffee-store-serve-side.vercel.app/users', {
+          method: 'PATCH',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((dta) => {
+            console.log(dta);
+          });
         Swal.fire({
           title: 'Good job!',
           text: 'Your account has been successfully logged in.',

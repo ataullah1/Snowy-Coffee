@@ -79,11 +79,11 @@ const Register = () => {
       .then((res) => {
         // Update Profile
         console.log(res.user);
-        const firstSignInDate = res.user.metadata?.creationTime;
+        const lastSignInDate = res.user.metadata?.lastSignInDate;
         const resName = res.user.displayName || name;
         const resPhoto = res.user.photoURL || photo;
         const resEmail = res.user.email || email;
-        const data = { firstSignInDate, resName, resEmail, resPhoto };
+        const data = { lastSignInDate, resName, resEmail, resPhoto };
         profileUpdate(name, photo)
           .then(() => {
             setReload(!reload);
@@ -132,13 +132,13 @@ const Register = () => {
     socialLogin()
       .then((res) => {
         const user = res.user;
-        const firstSignInDate = res.user.metadata?.creationTime;
+        const lastSignInDate = res.user.metadata?.lastSignInDate;
         const resName = res.user.displayName || 'User Name';
         const resPhoto =
           res.user.photoURL ||
           'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
         const resEmail = res.user.email;
-        const data = { firstSignInDate, resName, resEmail, resPhoto };
+        const data = { lastSignInDate, resName, resEmail, resPhoto };
         console.log(user);
         fetch('https://coffee-store-serve-side.vercel.app/users', {
           method: 'POST',

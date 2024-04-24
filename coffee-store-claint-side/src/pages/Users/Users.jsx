@@ -24,8 +24,8 @@ const Users = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Last SignIn</th>
-                <th className='w-2'>Edit</th>
-                <th className='w-2'>Delete</th>
+                <th className="w-2">Edit</th>
+                <th className="w-2">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -41,7 +41,7 @@ const Users = () => {
                   </td>
                   <td>{dta.resName}</td>
                   <td>{dta.resEmail}</td>
-                  <td>{dta.firstSignInDate}</td>
+                  <td>{dta.lastSignInDate}</td>
                   <td className="text-center">
                     <button className="text-2xl">
                       <BiEdit />
