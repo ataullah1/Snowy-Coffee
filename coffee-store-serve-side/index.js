@@ -50,6 +50,13 @@ async function run() {
       res.send(result);
     });
 
+    // Read Users All Data
+    app.get('/users', async (req, res) => {
+      const cursor = userCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     // Read Coffee Single Data
 
     app.get('/coffees/:id', async (req, res) => {
