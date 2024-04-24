@@ -20,23 +20,23 @@ const Provider = ({ children }) => {
 
   // Email Password SignUp
   const emlPassRegister = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // Email Password Login
   const emlPassLogin = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password);
     // setIsLoading(true);
   };
 
   // Social Login
   const googleLogin = () => {
-    signInWithPopup(auth, providerGoogle);
+    return signInWithPopup(auth, providerGoogle);
   };
 
   // profileUpdate
   const profileUpdate = (nam, pic) => {
-    updateProfile(auth.currentUser, {
+    return updateProfile(auth.currentUser, {
       displayName: nam,
       photoURL: pic,
     });

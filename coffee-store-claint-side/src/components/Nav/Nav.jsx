@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import logo1 from '../../assets/images/more/logo1.png';
+import profile from '../../assets/images/icons/usrImg.jpg';
 import { RiMenuAddLine } from 'react-icons/ri';
 import { useContext, useState } from 'react';
 import { ContextAuth } from '../../provider/Provider';
@@ -23,7 +24,11 @@ const Nav = () => {
             {userDta ? (
               <div className="sm:hidden" onClick={() => setMenu(!menu)}>
                 <div className="h-10 w-10 md:h-14 md:w-14 cursor-pointer border-2 border-white rounded-full">
-                  <img src={userDta?.photoURL} alt="" />
+                  <img
+                    className="rounded-full border-2 border-primaryColor"
+                    src={userDta.photoURL || profile}
+                    alt=""
+                  />
                 </div>
               </div>
             ) : (
@@ -92,7 +97,11 @@ const Nav = () => {
                     className="h-10 w-10 md:h-14 md:w-14 cursor-pointer border-2 border-white rounded-full"
                     onClick={() => setMenu(!menu)}
                   >
-                    <img src={userDta?.photoURL} alt="" />
+                    <img
+                      className="rounded-full border-2 border-primaryColor"
+                      src={userDta.photoURL || profile}
+                      alt=""
+                    />
                   </div>
                   {menu && (
                     <ul className="absolute right-0 top-12 md:top-16 border-2  border-white py-3 min-w-32 rounded-md z-20 bg-primaryColor flex flex-col items-center gap-2 text-white">

@@ -83,6 +83,7 @@ const Register = () => {
               title: 'Good job!',
               text: 'Your account has been successfully created.',
               icon: 'success',
+              timer: 1500,
             });
           })
           .catch(() => {
@@ -90,6 +91,7 @@ const Register = () => {
               title: 'Oops...!',
               text: 'Sorry, your profile is not updated!',
               icon: 'error',
+              timer: 1500,
             });
           });
       })
@@ -101,6 +103,7 @@ const Register = () => {
           title: 'Oops...!',
           text: 'Sorry, your account could not be Created !',
           icon: 'error',
+          timer: 1500,
         });
       });
   };

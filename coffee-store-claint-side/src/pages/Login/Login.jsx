@@ -52,6 +52,7 @@ const Login = () => {
         title: 'Oops...!',
         text: 'Your account is already logged in!',
         icon: 'warning',
+        timer: 1500,
       });
       naviget('/');
       return;
@@ -64,6 +65,7 @@ const Login = () => {
             title: 'Good job!',
             text: 'Your account has been successfully logged in.',
             icon: 'success',
+            timer: 1500,
           });
           naviget('/');
         })
@@ -75,6 +77,7 @@ const Login = () => {
             title: 'Oops...!',
             text: 'Sorry, your account could not be logged in!',
             icon: 'error',
+            timer: 1500,
           });
         });
     }
