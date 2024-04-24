@@ -33,13 +33,9 @@ const Register = () => {
     gitHubLogin,
     googleLogin,
     isLoading,
-    logOutAcc,
     userDta,
     profileUpdate,
-    setReload,
-    reload,
     setIsLoading,
-    setRegisterDta,
   } = useContext(ContextAuth);
 
   // Naviget, login done then go to Login
@@ -47,7 +43,7 @@ const Register = () => {
   useEffect(() => {
     if (userDta) {
       naviget('/');
-      console.log('Register to home');
+      // console.log('Register to home');
     }
   }, [userDta, naviget]);
 
@@ -82,20 +78,20 @@ const Register = () => {
         // Update Profile
         profileUpdate(name, photo)
           .then(() => {
+            alert('Bal');
             Swal.fire({
               title: 'Good job!',
-              text: 'Your account has been successfully created. Please login now.',
+              text: 'Your account has been successfully created.',
               icon: 'success',
             });
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            Swal.fire({
+              title: 'Oops...!',
+              text: 'Sorry, your profile is not updated!',
+              icon: 'error',
+            });
           });
-        logOutAcc();
-        setReload(!reload);
-        setRegisterDta(false);
-
-        naviget('/login');
       })
       .catch((error) => {
         const errorMessage = error.message;

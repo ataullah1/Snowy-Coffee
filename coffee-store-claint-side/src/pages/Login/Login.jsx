@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash, FaTwitter } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordFill } from 'react-icons/ri';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 import { ContextAuth } from '../../provider/Provider';
 import Loding from '../Loding/Loding';
@@ -14,37 +14,30 @@ import Swal from 'sweetalert2';
 const Login = () => {
   // Naviget, login done then go to Home
   const naviget = useNavigate();
-  const location = useLocation();
   // console.log(location);
   const [eye, setEye] = useState(false);
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const [emailErr, setEmailErr] = useState(null);
   const [passErr, setPassErr] = useState(null);
 
-  const {
-    twitterLogin,
-    gitHubLogin,
-    googleLogin,
-    emlPassLogin,
-    isLoadings,
-    userDta,
-    setIsLoading,
-    registerDta,
-  } = useContext(ContextAuth);
+  const { googleLogin, emlPassLogin, isLoading, userDta, setIsLoading } =
+    useContext(ContextAuth);
 
+  console.log(userDta);
   useEffect(() => {
-    if (userDta && !location.state && registerDta) {
+    if (userDta) {
       naviget('/');
-      console.log('login to home');
+      // console.log('login to home');
     }
-  }, [naviget, userDta, location.state, registerDta]);
+  }, [naviget, userDta]);
+
   const handleLoginSubmit = (e) => {
     setEmailErr(null);
     e.preventDefault();
     const formDta = new FormData(e.currentTarget);
     const email = formDta.get('email');
     const pass = formDta.get('password');
-    console.log(email, pass);
+    // console.log(email, pass);
 
     if (!isValidEmail.test(email)) {
       setEmailErr('Please enter a valid email address.');
@@ -62,28 +55,29 @@ const Login = () => {
       });
       naviget('/');
       return;
+    } else {
+      emlPassLogin(email, pass)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          Swal.fire({
+            title: 'Good job!',
+            text: 'Your account has been successfully logged in.',
+            icon: 'success',
+          });
+          naviget('/');
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          setIsLoading(false);
+          Swal.fire({
+            title: 'Oops...!',
+            text: 'Sorry, your account could not be logged in!',
+            icon: 'error',
+          });
+        });
     }
-    emlPassLogin(email, pass)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        Swal.fire({
-          title: 'Good job!',
-          text: 'Your account has been successfully logged in.',
-          icon: 'success',
-        });
-        naviget(location?.state ? location.state : '/');
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        setIsLoading(false);
-        Swal.fire({
-          title: 'Oops...!',
-          text: 'Sorry, your account could not be logged in!',
-          icon: 'error',
-        });
-      });
   };
 
   // all Social Login
@@ -106,9 +100,10 @@ const Login = () => {
           text: 'Your account has been successfully logged in.',
           icon: 'success',
         });
-        naviget(location?.state ? location.state : '/');
+        naviget('/');
       })
       .catch((error) => {
+        setIsLoading(false);
         const errorMessage = error.message;
         console.log(errorMessage);
         Swal.fire({
@@ -118,7 +113,7 @@ const Login = () => {
         });
       });
   };
-  if (isLoadings) {
+  if (isLoading) {
     return <Loding />;
   }
   return (
@@ -213,7 +208,7 @@ const Login = () => {
             Login With Google
           </button>
           <button
-            onClick={() => socialLogin(gitHubLogin)}
+            // onClick={() => socialLogin(gitHubLogin)}
             className="py-2 px-4 w-full font-medium border hover:shadow-lg shadow-blue-500/20 rounded-md  flex items-center justify-center gap-2 border-redLi"
           >
             <span className="text-black text-2xl">
@@ -222,7 +217,7 @@ const Login = () => {
             Login With GitHub
           </button>
           <button
-            onClick={() => socialLogin(twitterLogin)}
+            // onClick={() => socialLogin(twitterLogin)}
             className="py-2 px-4 w-full font-medium border hover:shadow-lg shadow-blue-400-900/20 rounded-md  flex items-center justify-center gap-2 border-redLi"
           >
             <span className="text-blue-400 text-2xl">
