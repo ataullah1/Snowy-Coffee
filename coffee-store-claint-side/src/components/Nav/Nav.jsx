@@ -25,7 +25,7 @@ const Nav = () => {
               <div className="sm:hidden" onClick={() => setMenu(!menu)}>
                 <div className="h-10 w-10 md:h-14 md:w-14 cursor-pointer border-2 border-white rounded-full">
                   <img
-                    className="rounded-full border-2 border-primaryColor"
+                    className="rounded-full h-full w-full border-2 border-primaryColor"
                     src={userDta.photoURL || profile}
                     alt=""
                   />
@@ -98,7 +98,7 @@ const Nav = () => {
                     onClick={() => setMenu(!menu)}
                   >
                     <img
-                      className="rounded-full border-2 border-primaryColor"
+                      className="rounded-full h-full w-full border-2 border-primaryColor"
                       src={userDta.photoURL || profile}
                       alt=""
                     />
