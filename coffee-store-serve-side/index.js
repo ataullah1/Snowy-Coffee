@@ -96,6 +96,21 @@ async function run() {
       res.send(result);
     });
 
+    // Update single user login time
+    app.patch('/users', async (req, res) => {
+      const user = req.body;
+      const filter = { resEmail: user.email };
+      // console.log(filter);
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          firstSignInDate: user.firstSignInDate,
+        },
+      };
+      const result = await userCollection.updateOne(filter, updateDoc, options);
+      res.send(result);
+    });
+
     // Delete Data
     app.delete('/coffees/:id', async (req, res) => {
       const id = req.params.id;
