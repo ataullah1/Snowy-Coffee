@@ -22,7 +22,7 @@ const Provider = ({ children }) => {
   // Auto Reload Profile
   useEffect(() => {
     setReload(!reload);
-  }, [reload]);
+  }, []);
 
   // Email Password SignUp
   const emlPassRegister = (email, password) => {

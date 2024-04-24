@@ -58,9 +58,23 @@ const Login = () => {
       return;
     } else {
       emlPassLogin(email, pass)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
+        .then((res) => {
+          console.log(res.user);
+          const firstSignInDate = res.user.metadata?.lastSignInTime;
+
+          const resEmail = res.user.email || email;
+          const data = { firstSignInDate, resEmail };
+          fetch('https://coffee-store-serve-side.vercel.app/users', {
+            method: 'PATCH',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+            .then((res) => res.json())
+            .then((dta) => {
+              console.log(dta);
+            });
           Swal.fire({
             title: 'Good job!',
             text: 'Your account has been successfully logged in.',

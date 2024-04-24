@@ -130,9 +130,27 @@ const Register = () => {
   // all Social Login
   const socialLogin = (socialLogin) => {
     socialLogin()
-      .then((result) => {
-        const user = result.user;
+      .then((res) => {
+        const user = res.user;
+        const firstSignInDate = res.user.metadata?.creationTime;
+        const resName = res.user.displayName || 'User Name';
+        const resPhoto =
+          res.user.photoURL ||
+          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+        const resEmail = res.user.email;
+        const data = { firstSignInDate, resName, resEmail, resPhoto };
         console.log(user);
+        fetch('https://coffee-store-serve-side.vercel.app/users', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((dta) => {
+            console.log(dta);
+          });
         Swal.fire({
           title: 'Good job!',
           text: 'Your account has been successfully logged in.',
