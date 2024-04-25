@@ -4,12 +4,13 @@ import cup1 from '../../assets/images/6.png';
 import img1 from '../../assets/images/more/4.png';
 import img2 from '../../assets/images/more/5.png';
 import { FaPen, FaTrash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 const OurPopularProducts = ({ data }) => {
+  const naviget = useNavigate();
   const [coffeeDta, setCoffeeDta] = useState(data);
-  // console.log(data);
+  console.log(data.length);
   const textShadow = {
     textAlign: 'center',
     textShadow:
@@ -19,6 +20,22 @@ const OurPopularProducts = ({ data }) => {
   // Data delete function call
   const handleDelete = (id) => {
     // console.log(id);
+    if (data.length <= 6) {
+      Swal.fire({
+        title: 'Oops...!',
+        text: `You cannot delete coffee's card if it has less than six. If you want to delete a card, add a new copy first.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'I want to add coffee',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          naviget('/add-coffee');
+        }
+      });
+      return;
+    }
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -42,8 +59,8 @@ const OurPopularProducts = ({ data }) => {
                 title: 'Deleted!',
                 text: 'Your file has been deleted.',
                 icon: 'success',
-              showConfirmButton: false,
-              timer: 1200,
+                showConfirmButton: false,
+                timer: 1200,
               });
             }
           });

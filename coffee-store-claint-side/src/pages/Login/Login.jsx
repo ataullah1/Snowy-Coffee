@@ -112,7 +112,8 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         console.log(user);
-        const lastSignInDate = res.user.metadata?.lastSignInTime;
+        const lastSignInDate =
+          res.user.metadata?.lastSignInTime || 'Login time not access';
         const resEmail = res.user.email;
         const data = { lastSignInDate, resEmail };
         fetch('https://coffee-store-serve-side.vercel.app/users', {

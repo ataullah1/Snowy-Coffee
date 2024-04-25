@@ -2,9 +2,24 @@ import { BiEdit } from 'react-icons/bi';
 import img1 from '../../assets/images/more/11.png';
 import { BsTrash } from 'react-icons/bs';
 import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const Users = () => {
   const userData = useLoaderData();
   // console.log(userData);
+  const handleDelete = () => {
+    Swal.fire({
+      title: 'Oops...!',
+      text: `Sorry, you do not have access to Delete another user's data.`,
+      icon: 'warning',
+    });
+  };
+  const handleEdit = () => {
+    Swal.fire({
+      title: 'Oops...!',
+      text: `Sorry, you do not have access to edit another user's data.`,
+      icon: 'warning',
+    });
+  };
   return (
     <div className="relative">
       <img
@@ -43,12 +58,15 @@ const Users = () => {
                   <td>{dta.resEmail}</td>
                   <td>{dta.lastSignInDate}</td>
                   <td className="text-center">
-                    <button className="text-2xl">
+                    <button className="text-2xl" onClick={handleEdit}>
                       <BiEdit />
                     </button>
                   </td>
                   <td className="text-center">
-                    <button className="text-2xl hover:text-red-400">
+                    <button
+                      className="text-2xl hover:text-red-400"
+                      onClick={handleDelete}
+                    >
                       <BsTrash />
                     </button>
                   </td>

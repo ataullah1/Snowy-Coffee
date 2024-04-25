@@ -132,7 +132,8 @@ const Register = () => {
     socialLogin()
       .then((res) => {
         const user = res.user;
-        const lastSignInDate = res.user.metadata?.lastSignInDate;
+        const lastSignInDate =
+          res.user.metadata?.lastSignInDate || 'Login time not access';
         const resName = res.user.displayName || 'User Name';
         const resPhoto =
           res.user.photoURL ||
